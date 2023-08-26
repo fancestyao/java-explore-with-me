@@ -1,12 +1,10 @@
 package com.github.java_explore_with_me.stats.output_dto;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
-@Builder
 @NoArgsConstructor
+@Builder
 public class OutputDTO {
     private String app;
     private String uri;

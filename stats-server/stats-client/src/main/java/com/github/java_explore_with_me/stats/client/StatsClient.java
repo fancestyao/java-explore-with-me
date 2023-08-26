@@ -11,8 +11,10 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@Component
 public class StatsClient {
     private static final String STATS_URL = "http://localhost:9090";
     private final RestTemplate restTemplate;

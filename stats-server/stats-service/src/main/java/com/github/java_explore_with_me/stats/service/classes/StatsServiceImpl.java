@@ -9,16 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.java_explore_with_me.stats.service.interfaces.StatsService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class StatsServiceImpl implements StatsService {
-    private HitRepository hitRepository;
+    private final HitRepository hitRepository;
 
     @Transactional
     @Override
@@ -32,6 +32,7 @@ public class StatsServiceImpl implements StatsService {
         hitRepository.save(hit);
     }
 
+    @Transactional
     @Override
     public List<OutputDTO> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
         List<OutputDTO> stats = new ArrayList<>();

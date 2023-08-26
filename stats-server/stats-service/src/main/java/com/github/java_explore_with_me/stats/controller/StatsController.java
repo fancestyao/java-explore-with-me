@@ -26,7 +26,7 @@ public class StatsController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/hit")
     public void saveHit(@RequestBody InputDTO inputDTO) {
-        System.out.println("inputdto: " + inputDTO);
+        log.info("Запрос на сохранение хита с inputDTO: {}", inputDTO);
         statsService.saveHit(inputDTO);
     }
 
@@ -35,7 +35,7 @@ public class StatsController {
                                     @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime end,
                                     @RequestParam(required = false)  List<String> uris,
                                     @RequestParam(defaultValue = "false") boolean unique) {
-        log.info("start: {}, end: {}, uris: {}, unique: {}", start, end, uris, unique);
+        log.info("Запрос на получение статистики start: {}, end: {}, uris: {}, unique: {}", start, end, uris, unique);
         return statsService.getStats(start, end, uris, unique);
     }
 }
