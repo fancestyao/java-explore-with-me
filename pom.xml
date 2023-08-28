@@ -10,10 +10,22 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<name>Explore With Me</name>
+	<name>Java Explore With Me</name>
+
+	<modules>
+		<module>stats-server</module>
+		<module>main-server</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+	</dependencies>
 
 	<groupId>ru.practicum</groupId>
-	<artifactId>explore-with-me</artifactId>
+	<artifactId>java_explore-with-me</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
@@ -183,5 +195,4 @@
 			</build>
 		</profile>
 	</profiles>
-
 </project>
