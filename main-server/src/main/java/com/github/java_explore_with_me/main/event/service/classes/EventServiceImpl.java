@@ -231,7 +231,7 @@ public class EventServiceImpl implements EventService {
         event.setPublishedOn(publicationDate);
         event = eventRepository.save(event);
         EventOutDto eventOutDto = eventMapstructMapper.eventToEventOutDto(event);
-        log.info("Событию: {} присвоен статус: {}", event ,event.getState());
+        log.info("Событию: {} присвоен статус: {}", event, event.getState());
         return eventOutDto;
     }
 

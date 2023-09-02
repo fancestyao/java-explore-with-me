@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 @Slf4j
 public class ExceptHandler {
-    private final static String reason = "Неправильно составленный запрос";
+    private final String reason = "Неправильно составленный запрос";
 
     @ExceptionHandler(ConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ApiError ConflictException(ConflictException conflictException) {
+    public ApiError conflictException(ConflictException conflictException) {
         log.warn(conflictException.getMessage(), conflictException);
         return new ApiError(HttpStatus.CONFLICT.toString(),
                 conflictException.getMessage(),
@@ -25,7 +25,7 @@ public class ExceptHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiError MethodArgumentNotValidException(MethodArgumentNotValidException exception) {
+    public ApiError methodArgumentNotValidException(MethodArgumentNotValidException exception) {
         log.warn(exception.getMessage(), exception);
         return new ApiError(HttpStatus.BAD_REQUEST.toString(),
                 exception.getMessage(),
@@ -35,7 +35,7 @@ public class ExceptHandler {
 
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ApiError NotFoundException(NotFoundException notFoundException) {
+    public ApiError notFoundException(NotFoundException notFoundException) {
         log.warn(notFoundException.getMessage(), notFoundException);
         return new ApiError(HttpStatus.NOT_FOUND.toString(),
                 notFoundException.getMessage(),
@@ -45,7 +45,7 @@ public class ExceptHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BadRequestException.class)
-    public ApiError BadRequestError(BadRequestException exception) {
+    public ApiError badRequestError(BadRequestException exception) {
         log.warn(exception.getMessage(), exception);
         return new ApiError(HttpStatus.BAD_REQUEST.toString(),
                 exception.getMessage(),
