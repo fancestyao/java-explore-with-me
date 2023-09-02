@@ -23,6 +23,7 @@ public class StatsServiceImpl implements StatsService {
     @Transactional
     @Override
     public void saveHit(InputDTO inputDTO) {
+        log.info("Запрос на сохранение хита успешно поступил в сервис StatsServiceImpl");
         Hit hit = Hit.builder()
                 .uri(inputDTO.getUri())
                 .ip(inputDTO.getIp())
@@ -30,11 +31,13 @@ public class StatsServiceImpl implements StatsService {
                 .timestamp(inputDTO.getTimestamp())
                 .build();
         hitRepository.save(hit);
+        log.info("Хит: {} успешно сохранен", hit);
     }
 
     @Transactional
     @Override
     public List<OutputDTO> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
+        log.info("Запрос на получение статистики успешно поступил в сервис StatsServiceImpl");
         List<OutputDTO> stats = new ArrayList<>();
 
         if (!unique && uris != null) {
@@ -49,6 +52,7 @@ public class StatsServiceImpl implements StatsService {
         if (!unique && uris == null) {
             stats = hitRepository.getAllStats(start, end);
         }
+        log.info("Статистика успешно получена: {}", stats);
         return stats;
     }
 }

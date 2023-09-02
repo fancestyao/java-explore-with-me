@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,11 +32,15 @@ public class StatsController {
     }
 
     @GetMapping("/stats")
-    public List<OutputDTO> getStats(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime start,
+    public ResponseEntity<List<OutputDTO>> getStats(
+                                    @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime start,
                                     @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime end,
-                                    @RequestParam(required = false)  List<String> uris,
+                                    @RequestParam(required = false) List<String> uris,
                                     @RequestParam(defaultValue = "false") boolean unique) {
         log.info("Запрос на получение статистики start: {}, end: {}, uris: {}, unique: {}", start, end, uris, unique);
-        return statsService.getStats(start, end, uris, unique);
+        if (start.isAfter(end)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(statsService.getStats(start, end, uris, unique));
     }
 }
