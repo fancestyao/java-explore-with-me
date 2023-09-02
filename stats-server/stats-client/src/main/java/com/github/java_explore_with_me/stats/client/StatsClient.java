@@ -3,6 +3,7 @@ package com.github.java_explore_with_me.stats.client;
 import com.github.java_explore_with_me.stats.input_dto.InputDTO;
 import com.github.java_explore_with_me.stats.output_dto.OutputDTO;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class StatsClient {
-    private static final String STATS_URL = "http://localhost:9090";
+    private static final String STATS_URL_FOR_DOCKER = "http://stats-server:9090";
     private final RestTemplate restTemplate;
 
     public StatsClient() {
@@ -24,12 +25,18 @@ public class StatsClient {
     }
 
     public void saveHit(InputDTO inputDTO) {
-        final String url = STATS_URL + "/hit";
+        final String url = STATS_URL_FOR_DOCKER + "/hit";
         restTemplate.postForEntity(url, inputDTO, Void.class);
     }
 
-    public List<OutputDTO> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
-        final String url = STATS_URL + "/stats?start={start}&end={end}&uris={uris}&unique={unique}";
+    public List<OutputDTO> getStats(LocalDateTime startLocalDateTime,
+                                    LocalDateTime endLocalDateTime,
+                                    String[] uris,
+                                    boolean unique) {
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String start = startLocalDateTime.format(outputFormatter);
+        String end = endLocalDateTime.format(outputFormatter);
+        final String url = STATS_URL_FOR_DOCKER + "/stats?start={start}&end={end}&uris={uris}&unique={unique}";
         ResponseEntity<List<OutputDTO>> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,

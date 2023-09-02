@@ -25,7 +25,7 @@
 	</dependencies>
 
 	<groupId>ru.practicum</groupId>
-	<artifactId>java_explore-with-me</artifactId>
+	<artifactId>java-explore-with-me</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 

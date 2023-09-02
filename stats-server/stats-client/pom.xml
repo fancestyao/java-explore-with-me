@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>stats-client</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>com.github.fancestyao</groupId>
@@ -24,6 +25,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
         </dependency>
     </dependencies>
 
