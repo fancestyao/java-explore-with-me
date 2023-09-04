@@ -1,10 +1,14 @@
 package ru.practicum.requests.service.classes;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.event.enumerated.State;
 import ru.practicum.event.model.Event;
+import ru.practicum.event.repository.EventRepository;
 import ru.practicum.exception.ConflictException;
 import ru.practicum.exception.NotFoundException;
-import ru.practicum.event.enumerated.State;
-import ru.practicum.event.repository.EventRepository;
 import ru.practicum.requests.dto.ParticipationRequestDto;
 import ru.practicum.requests.mapper.RequestMapper;
 import ru.practicum.requests.model.Request;
@@ -13,13 +17,9 @@ import ru.practicum.requests.service.interfaces.RequestService;
 import ru.practicum.requests.status.Status;
 import ru.practicum.user.model.User;
 import ru.practicum.user.repository.UserRepository;
+
 import java.time.LocalDateTime;
 import java.util.List;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -76,8 +76,8 @@ public class RequestServiceImpl implements RequestService {
     public ParticipationRequestDto cancelParticipationRequest(Long userId, Long requestId) {
         log.info("Запрос на обновление запроса на участие в событии успешно передан в сервис RequestServiceImpl");
         Request request = requestRepository.findByIdAndRequesterId(requestId, userId)
-                .orElseThrow(() -> new NotFoundException
-                        ("Пользователь еще не оставлял запрос на участие в событии с id: " + requestId));
+                .orElseThrow(() -> new NotFoundException("Пользователь еще не оставлял запрос" +
+                        " на участие в событии с id: " + requestId));
         request.setStatus(Status.CANCELED);
         requestRepository.save(request);
         log.info("Запрос успешно отменен");
