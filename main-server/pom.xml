@@ -9,9 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.github.fancestyao</groupId>
     <artifactId>main-server</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -27,14 +25,9 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.fancestyao</groupId>
+            <groupId>ru.practicum</groupId>
             <artifactId>stats-client</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.fancestyao</groupId>
-            <artifactId>stats-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -102,7 +95,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.github.java_explore_with_me.main.MainServiceApp</mainClass>
+                    <mainClass>ru.practicum.MainServiceApp</mainClass>
                     <layout>JAR</layout>
                     <excludes>
                         <exclude>

@@ -7,11 +7,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.github.fancestyao</groupId>
     <artifactId>stats-server</artifactId>
     <packaging>pom</packaging>
-
-    <name>stats-server</name>
     <modules>
         <module>stats-service</module>
         <module>stats-dto</module>

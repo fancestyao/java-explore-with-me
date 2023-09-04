@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.github.fancestyao</groupId>
+        <groupId>ru.practicum</groupId>
         <artifactId>stats-server</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -31,9 +31,9 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.fancestyao</groupId>
+            <groupId>ru.practicum</groupId>
             <artifactId>stats-dto</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -95,7 +95,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.github.java_explore_with_me.stats.StatsServiceApp</mainClass>
+                    <mainClass>ru.practicum.StatsServiceApp</mainClass>
                     <layout>JAR</layout>
                     <excludes>
                         <exclude>
