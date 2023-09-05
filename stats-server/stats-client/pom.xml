@@ -4,17 +4,18 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.github.fancestyao</groupId>
+        <groupId>ru.practicum</groupId>
         <artifactId>stats-server</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>stats-client</artifactId>
+
     <dependencies>
         <dependency>
-            <groupId>com.github.fancestyao</groupId>
+            <groupId>ru.practicum</groupId>
             <artifactId>stats-dto</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -24,6 +25,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
         </dependency>
     </dependencies>
 
