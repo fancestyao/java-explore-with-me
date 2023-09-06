@@ -34,7 +34,8 @@ public class AdminCategoryController {
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CategoryOutDto updateCategory(@PathVariable Long id, @RequestBody @Valid CategoryInputDto categoryInputDto) {
+    public CategoryOutDto updateCategory(@PathVariable Long id,
+                                         @RequestBody @Valid CategoryInputDto categoryInputDto) {
         log.info("Поступил запрос на контроллер AdminCategoryController на обновление категории с id: {} на" +
                 " newCategoryDto: {}", id, categoryInputDto);
         return categoryService.updateCategory(id, categoryInputDto);
@@ -42,7 +43,7 @@ public class AdminCategoryController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCategory(@PathVariable long id) {
+    public void deleteCategory(@PathVariable Long id) {
         log.info("Поступил запрос на контроллер AdminCategoryController на удаление категории с id: {}", id);
         categoryService.deleteCategory(id);
     }

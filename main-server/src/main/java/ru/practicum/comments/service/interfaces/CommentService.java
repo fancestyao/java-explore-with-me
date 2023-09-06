@@ -8,15 +8,21 @@ import java.util.List;
 public interface CommentService {
     CommentDto saveComment(CommentInputDto commentInputDto, Long userId, Long eventId);
 
-    UpdatedCommentDto updateComment(UpdatedCommentDto updatedCommentDto, Long userId, Long commentId);
+    UpdatedCommentDto updateCommentByUser(UpdatedCommentDto updatedCommentDto, Long userId, Long commentId);
 
-    void deleteComment(Long userId, Long commentId);
+    UpdatedCommentDto updateCommentByAdmin(UpdatedCommentDto updatedCommentDto, Long commentId);
+
+    void deleteCommentByUser(Long userId, Long commentId);
+
+    void deleteCommentByAdmin(Long commentId);
 
     CommentDto getCommentById(Long commentId);
 
-    List<CommentDto> getAllComments();
+    CommentDto getCommentByIdForUser(Long commentId, Long userId);
 
-    List<CommentDto> getAllCommentsByEvent(Long eventId);
+    List<CommentDto> getAllCommentsByEventForUser(Long eventId, Long userId, int from, int size);
 
-    List<CommentDto> getAllCommentsByUser(Long userId);
+    List<CommentDto> getAllComments(int from, int size);
+
+    List<CommentDto> getAllCommentsByEvent(Long eventId, int from, int size);
 }
