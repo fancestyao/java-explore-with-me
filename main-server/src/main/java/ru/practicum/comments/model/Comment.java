@@ -19,7 +19,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String content;
-    LocalDateTime created;
+    LocalDateTime created = LocalDateTime.now();
     LocalDateTime updated;
     @ManyToOne
     @JoinColumn(name = "user_id")

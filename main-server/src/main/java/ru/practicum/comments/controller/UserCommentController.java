@@ -30,14 +30,13 @@ public class UserCommentController {
         return commentService.saveComment(commentInputDto, userId, eventId);
     }
 
-    @PatchMapping("/{commentId}")
+    @PatchMapping
     public UpdatedCommentDto updateCommentByUser(@RequestBody @Valid UpdatedCommentDto updatedCommentDto,
-                                                 @PathVariable Long commentId,
                                                  @PathVariable Long userId) {
         log.info("Поступил запрос на контроллер UserCommentController" +
                 " на обновление комментария с id: {} " +
-                " updatedCommentDto: {} пользователем с id: {}", commentId, updatedCommentDto, userId);
-        return commentService.updateCommentByUser(updatedCommentDto, userId, commentId);
+                " updatedCommentDto: {} пользователем с id: {}", updatedCommentDto.getId(), updatedCommentDto, userId);
+        return commentService.updateCommentByUser(updatedCommentDto, userId, updatedCommentDto.getId());
     }
 
     @DeleteMapping("/{commentId}")

@@ -40,17 +40,13 @@ public class CommentServiceImpl implements CommentService {
                 .orElseThrow(() -> new NotFoundException("Событие с id: " + eventId + " не существует"));
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("Пользователь с id: " + userId + " не существует"));
-        Comment comment;
-        if (event.getState().equals(State.PUBLISHED)) {
-            comment = commentMapper.commentInputDtoToComment(commentInputDto);
-            comment.setCreated(LocalDateTime.now());
-            comment.setUpdated(null);
-            comment.setUser(user);
-            comment.setEvent(event);
-            commentRepository.save(comment);
-        } else {
+        if (!event.getState().equals(State.PUBLISHED)) {
             throw new ConflictException("Комментарии можно добавлять только к опубликованным событиям");
         }
+        Comment comment = commentMapper.commentInputDtoToComment(commentInputDto);
+        comment.setUser(user);
+        comment.setEvent(event);
+        commentRepository.save(comment);
         log.info("Комментарий: {} успешно сохранен", comment);
         return commentMapper.commentToCommentDto(comment);
     }
